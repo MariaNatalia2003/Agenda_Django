@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -9,6 +10,11 @@ from django.utils import timezone
 # show (boolean), owner (foreign key), picture (imagem)
 
 class Category(models.Model):
+    # Ajuste do plural automático que o Django coloca
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=50)
 
     def __str__(self) -> str:
@@ -24,6 +30,11 @@ class Contact(models.Model):
     show = models.BooleanField(default=True)
     picture = models.ImageField(upload_to='pictures/%Y/%m/', blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, 
+        blank=True, null=True
+    ) 
+    owner = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
         blank=True, null=True
     ) 
 
