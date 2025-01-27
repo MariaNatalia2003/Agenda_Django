@@ -1,5 +1,5 @@
 from django.contrib import admin
-from contact.models import Contact
+from contact.models import Contact, Category
 
 # Register your models here.
 @admin.register(Contact)
@@ -14,3 +14,11 @@ class ContactAdmin(admin.ModelAdmin):
     # Torna os itens editáveis sem precisar sair do display
     list_editable = 'first_name', 'last_name',
     list_display_links = 'id', 'phone',
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    # Display do painel administrativo
+    list_display = 'name',
+    # Ordem decrescente
+    ordering = '-id',
+    
