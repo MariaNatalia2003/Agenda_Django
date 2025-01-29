@@ -8,6 +8,9 @@ media/
 static/
 project/local_settings.py
 
+# Test files
+logins.txt
+
 # Backup files # 
 *.bak 
 
